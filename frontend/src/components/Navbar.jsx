@@ -1,6 +1,11 @@
+import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import '../styles/navbar.css'
+import Button from './ui/Button'
 
 function Navbar() {
+  const [isOpen, setIsOpen] = useState(false)
+
   const links = [
     { to: '/', label: 'Home' },
     { to: '/about', label: 'About' },
@@ -8,25 +13,45 @@ function Navbar() {
     { to: '/contact', label: 'Contact' },
   ]
 
-  return (
-    <nav style={{ padding: '1rem 2rem', borderBottom: '1px solid #ddd' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ fontWeight: 'bold', fontSize: '1.1rem' }}>WFWMA</div>
+  const toggleMenu = () => setIsOpen((prev) => !prev)
 
-        <div style={{ display: 'flex', gap: '1rem' }}>
-          {links.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              style={({ isActive }) => ({
-                textDecoration: 'none',
-                color: isActive ? '#2563eb' : '#333',
-                fontWeight: isActive ? 'bold' : 'normal',
-              })}
-            >
-              {link.label}
-            </NavLink>
-          ))}
+  return (
+    <nav className="navbar">
+      <div className="navbar__container">
+        <NavLink to="/" className="navbar__brand">
+          <span className="navbar__brand-mark">W</span>
+          <span>WFWMA</span>
+        </NavLink>
+
+        <button
+          className="navbar__toggle"
+          onClick={toggleMenu}
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar__toggle-line"></span>
+          <span className="navbar__toggle-line"></span>
+          <span className="navbar__toggle-line"></span>
+        </button>
+
+        <div className={`navbar__menu ${isOpen ? 'is-open' : ''}`}>
+          <div className="navbar__links">
+            {links.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                className={({ isActive }) =>
+                  `navbar__link ${isActive ? 'active' : ''}`
+                }
+                onClick={() => setIsOpen(false)}
+              >
+                {link.label}
+              </NavLink>
+            ))}
+          </div>
+
+          <div className="navbar__cta">
+            <Button>Book Appointment</Button>
+          </div>
         </div>
       </div>
     </nav>
