@@ -3,6 +3,7 @@ import StatsSection from '../components/StatsSection'
 import AboutPreviewSection from '../components/AboutPreviewSection'
 import ServicesPreviewSection from '../components/ServicesPreviewSection'
 import CtaSection from '../components/CtaSection'
+import AppointmentForm from '../components/AppointmentForm'
 
 function HomePage() {
   return (
@@ -12,6 +13,7 @@ function HomePage() {
       <AboutPreviewSection />
       <ServicesPreviewSection />
       <CtaSection />
+      <AppointmentForm />
     </>
   )
 }
