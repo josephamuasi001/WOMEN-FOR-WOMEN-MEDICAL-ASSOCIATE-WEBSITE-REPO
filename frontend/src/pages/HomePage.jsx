@@ -1,7 +1,13 @@
 import HeroSection from '../components/HeroSection'
+import StatsSection from '../components/StatsSection'
 
 function HomePage() {
-  return <HeroSection />
+  return (
+    <>
+      <HeroSection />
+      <StatsSection />
+    </>
+  )
 }
 
 export default HomePage
