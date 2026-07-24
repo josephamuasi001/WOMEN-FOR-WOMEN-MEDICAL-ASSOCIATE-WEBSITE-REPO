@@ -1,0 +1,40 @@
+.cta-section {
+  padding: 1rem 0 4rem;
+}
+
+.cta-card {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #8b5cf6 100%);
+  color: var(--color-white);
+  border-radius: var(--radius-xl);
+  padding: 3rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.cta-card h2 {
+  margin-bottom: 0.75rem;
+  color: var(--color-white);
+}
+
+.cta-card p {
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 650px;
+  margin: 0 auto 1.5rem;
+}
+
+.cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.cta-actions button {
+  min-width: 160px;
+}
+
+@media (max-width: 600px) {
+  .cta-card {
+    padding: 2rem 1.25rem;
+  }
+}
