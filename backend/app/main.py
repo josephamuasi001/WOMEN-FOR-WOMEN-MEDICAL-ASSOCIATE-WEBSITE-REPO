@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.routers.enquiries import router as enquiries_router
+from app.routers.contact import router as contact_router
 
 app = FastAPI(title="WFWMA API", version="0.1.0")
 
@@ -14,3 +15,4 @@ app.add_middleware(
 )
 
 app.include_router(enquiries_router)
+app.include_router(contact_router)
