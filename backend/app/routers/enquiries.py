@@ -2,6 +2,9 @@ from fastapi import APIRouter, HTTPException
 
 from app.schemas.enquiry import EnquiryCreate
 
+from app.database import supabase
+
+
 router = APIRouter(prefix="/api", tags=["enquiries"])
 
 
@@ -22,9 +25,34 @@ def get_services():
     ]
 
 
+
 @router.post("/enquiries")
 def submit_enquiry(enquiry: EnquiryCreate):
-    return {
-        "success": True,
-        "message": "Appointment enquiry submitted successfully.",
-    }
+    try:
+        data = {
+            "full_name": enquiry.full_name,
+            "email": enquiry.email,
+            "phone": enquiry.phone,
+            "preferred_date": enquiry.preferred_date,
+            "service_requested": enquiry.service,
+            "message": enquiry.message,
+        }
+
+        response = (
+            supabase
+            .table("appointment_enquiries")
+            .insert(data)
+            .execute()
+        )
+
+        return {
+            "success": True,
+            "message": "Appointment enquiry submitted successfully.",
+            "data": response.data,
+        }
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
+        )
