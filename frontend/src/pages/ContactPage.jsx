@@ -1,10 +1,7 @@
+import ContactForm from '../components/ContactForm'
+
 function ContactPage() {
-  return (
-    <section>
-      <h1>Contact</h1>
-      <p>This is the contact placeholder page.</p>
-    </section>
-  )
+  return <ContactForm />
 }
 
 export default ContactPage
